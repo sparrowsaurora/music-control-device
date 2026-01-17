@@ -17,8 +17,9 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include "pico/stdlib.h"
+
 #include "hardware/adc.h"
+#include "pico/stdlib.h"
 
 /**
  * @brief Initialize the ADC and GPIO used for volume control.

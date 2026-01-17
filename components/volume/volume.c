@@ -1,28 +1,30 @@
 /*******************************************************************
- * 
+ *
  * File Name: volume.c
  *
- * Description: 
+ * Description:
  *   Implements volume control functionality for a music control device.
  *   Provides functions to adjust volume levels and retrieve current levels.
- * 
+ *
  * Author: sparrow
  * Date: 16/01/26
  *
  *******************************************************************/
 
 #include "volume.h"
+
 #include <stdbool.h>
 #include <stdio.h>
-#include "pico/stdlib.h"
-#include "hardware/adc.h"
 
-void configure_volume_control(void) { // ?
+#include "hardware/adc.h"
+#include "pico/stdlib.h"
+
+void configure_volume_control(void) {  // ?
     adc_init();
 
-    adc_gpio_init(26); // GPIO26 corresponds to ADC0
-    adc_select_input(0); // Select ADC0
-    sleep_ms(100); // Wait for ADC to stabilize
+    adc_gpio_init(26);    // GPIO26 corresponds to ADC0
+    adc_select_input(0);  // Select ADC0
+    sleep_ms(100);        // Wait for ADC to stabilize
     // Initialize volume control settings
 }
 
@@ -45,6 +47,5 @@ int read_volume_percent(void) {
     float percentage = ((result * 100.0f) / 2047.5f) - 100.0f;
     // round with casting trick to avoid banker's rounding
     int rounded_percentage = (int)(percentage + 0.5);
-    return rounded_percentage; 
+    return rounded_percentage;
 }
-
