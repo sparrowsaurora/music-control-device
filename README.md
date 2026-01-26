@@ -8,11 +8,11 @@ STATUS: In-Progress
 
 <!-- INTIAL DESIGN (3d render) HERE -->
 
-## description
+## Description
 
 An embedded systems project that lets me control my music and playlists without the use of macros on my normal peripherals. This project was inspired but the look of an open HDD drive and a record player.
 
-## features
+## Key features
 
 - USB connection
 - Full music & playlist control:
@@ -30,19 +30,31 @@ An embedded systems project that lets me control my music and playlists without 
     ├── README.md
     ├── assets/
     |   └── ?
+    ├── components/
+    |   ├── display/
+    |   |   ├── drivers/
+    |   |   |   └── ?
+    |   |   ├── display.c
+    |   |   └── display.h
+    |   ├── volume/
+    |   |   ├── volume.c
+    |   |   └── volume.h
+    |   └── ?
+    ├── .gitignore
     ├── main.c
     └── pico_sdk_import.cmake
 
 ## Part list
 
-| Part                | Quantity | Details    | Purpose               |
-| ------------------- | -------- | ---------- | --------------------- |
-| Pi Pico 2 W         | 1        | RP2040     | main board            |
-| LED screen          | 1        | 0.91 inch  | song/playlist display |
-| Slide potentiometer | 1        |            | volume control        |
-| Rotary encoder      | 1        | Optical    | fast-forward/rewind   |
-| Rotary encoder      | 1        | Mechanical | song/playlist control |
-| Potentiometer       | 1        |            | on/off switch         |
+| Part                | Quantity | Details      | Purpose               |
+| ------------------- | -------- | ------------ | --------------------- |
+| Pi Pico 2 W         | 1        | RP2040       | main board            |
+| LED screen          | 1        | 0.91 inch    | song/playlist display |
+| Slide potentiometer | 1        |              | volume control        |
+| Rotary encoder      | 1        |              | fast-forward/rewind   |
+| Rotary encoder      | 1        | clicky (30°) | song/playlist control |
+| Potentiometer       | 1        |              | Pause/play switch     |
+| Switch              | 1        | SPST         | on/off switch         |
 
 ## Contact
 
