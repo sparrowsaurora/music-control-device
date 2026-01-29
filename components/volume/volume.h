@@ -21,6 +21,11 @@
 #include "hardware/adc.h"
 #include "pico/stdlib.h"
 
+#define VOLUME_GPIO 26
+#define VOLUME_ADC 0
+
+void init_volume(void);
+
 /**
  * @brief Initialize the ADC and GPIO used for volume control.
  *

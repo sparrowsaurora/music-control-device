@@ -22,16 +22,6 @@
 
 // TODO: pull song from spotify or file system
 
-typedef enum Command_t {
-    PREV,
-    NEXT
-} Command;
-
-typedef enum Mode_t {
-    SONGS,
-    PLAYLISTS
-} Mode;
-
 void configure_display(void) {
     // config pins for display
 }
@@ -45,7 +35,7 @@ void switch_mode(Mode mode) {
             break;
         case PLAYLISTS:
             // switch to playlists tab
-            // TODO implementation
+            // TODO: implementation
             // NOTE: fsdfsdf
             break;
         default:

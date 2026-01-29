@@ -42,6 +42,21 @@ target_link_libraries(display
     hardware_gpio
 )
 
+# pause / play logic 
+
+add_library(pause_play
+    components/pause_play/pause_play.c
+)
+
+target_include_directories(pause_play PUBLIC
+    components/pause_play
+)
+
+target_link_libraries(pause_play
+    pico_stdlib
+    hardware_adc
+)
+
 # main
 
 add_executable(main
@@ -54,6 +69,7 @@ target_link_libraries(main
     hardware_adc 
     volume
     display
+    pause_play
 )
 
 # enable usb output, disable uart output

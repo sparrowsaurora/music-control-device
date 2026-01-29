@@ -19,12 +19,13 @@
 #include "hardware/adc.h"
 #include "pico/stdlib.h"
 
-void configure_volume_control(void) {  // ?
-    adc_init();
+void init_volume(void) {
+    adc_gpio_init(VOLUME_GPIO);  // GPIO26 corresponds to ADC0
+}
 
-    adc_gpio_init(26);    // GPIO26 corresponds to ADC0
-    adc_select_input(0);  // Select ADC0
-    sleep_ms(100);        // Wait for ADC to stabilize
+void configure_volume_control(void) {
+    adc_select_input(VOLUME_ADC);  // Select ADC0
+    sleep_ms(100);                 // Wait for ADC to stabilize
     // Initialize volume control settings
 }
 
