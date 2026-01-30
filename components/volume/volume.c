@@ -25,7 +25,7 @@ void init_volume(void) {
 
 void configure_volume_control(void) {
     adc_select_input(VOLUME_ADC);  // Select ADC0
-    sleep_ms(100);                 // Wait for ADC to stabilize
+    sleep_ms(10);                  // Wait for ADC to stabilize
     // Initialize volume control settings
 }
 
@@ -45,8 +45,10 @@ int read_volume_percent(void) {
     // Return current volume level as a percentage
     int result = adc_read();
     // convert to % of 100
-    float percentage = ((result * 100.0f) / 2047.5f) - 100.0f;
+    int percent = (result * 100) / 4095;
+    return percent;
+    // float percentage = ((result * 100.0f) / 2047.5f) - 100.0f;
     // round with casting trick to avoid banker's rounding
-    int rounded_percentage = (int)(percentage + 0.5);
-    return rounded_percentage;
+    // int rounded_percentage = (int)(percentage + 0.5);
+    // return rounded_percentage;
 }

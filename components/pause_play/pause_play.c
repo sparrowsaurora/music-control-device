@@ -25,26 +25,22 @@ void init_pause_play(void) {
 
 void configure_pause_play_control(void) {
     adc_select_input(PAUSE_PLAY_ADC);  // Select ADC1
-    sleep_ms(100);                     // Wait for ADC to stabilize
+    sleep_ms(10);                      // Wait for ADC to stabilize
 }
 
 PlayState read_state(void) {
     // Return current level as on/off/out_of_bounds
     // == 1 / 0 / -1
-    int result = adc_read();
+    int raw = adc_read();
     // convert to % of 100
-    float percentage = ((result * 100.0f) / 2047.5f) - 100.0f;
-    // round with casting trick to avoid banker's rounding
-    int rounded_percentage = (int)(percentage + 0.5);
 
-    if (rounded_percentage > 50) {
+    if (raw > 3500) {
         // if over 50% == out_of_bounds
         return OUT_OF_BOUNDS;
-    } else if (rounded_percentage > 25) {
+    } else if (raw > 2000) {
         // if over 25% == ON
         return ON;
     } else {
-        // else OFF
         return OFF;
     }
 }

@@ -24,7 +24,7 @@ void read_play_state() {
     if (state == OUT_OF_BOUNDS) {
         // error noti here
         // force continuation
-        printf("STATE: OUT OF BOUNDS ERROR");
+        printf("STATE: OUT OF BOUNDS ERROR\n");
         return;
     }
 
@@ -45,7 +45,11 @@ void setup(void) {
 }
 
 int main() {
-    sleep_ms(2000);
+    setup();  // this is pretty obvious what it does. inits all pins and stuff
+
+    while (!stdio_usb_connected()) {
+        sleep_ms(10);  // repeat sleep while stdio usb is not initialised
+    }
 
     while (1) {
         read_volume();      // read volume %
