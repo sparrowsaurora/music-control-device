@@ -12,8 +12,7 @@
  *
  *******************************************************************/
 
-#ifndef VOLUME_H
-#define VOLUME_H
+#pragma once
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -25,13 +24,6 @@
 #define VOLUME_ADC 0
 
 void init_volume(void);
-
-/**
- * @brief Initialize the ADC and GPIO used for volume control.
- *
- * This function must be called before reading volume values.
- */
-void configure_volume_control(void);
 
 /**
  * @brief Read the raw ADC value of the volume control.
@@ -47,5 +39,3 @@ int read_volume_raw(bool print_voltage);
  * @return Volume percentage (implementation-defined range).
  */
 int read_volume_percent(void);
-
-#endif /* VOLUME_H */

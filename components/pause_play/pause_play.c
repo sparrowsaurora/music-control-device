@@ -19,25 +19,26 @@
 #include "hardware/adc.h"
 #include "pico/stdlib.h"
 
-void init_pause_play(void) {
+#define sleep_duration 10  // milliseconds
+
+void init_pause_play() {
     adc_gpio_init(PAUSE_PLAY_GPIO);  // GPIO27 corresponds to ADC1
 }
 
-void configure_pause_play_control(void) {
+play_state_t read_state() {
     adc_select_input(PAUSE_PLAY_ADC);  // Select ADC1
-    sleep_ms(10);                      // Wait for ADC to stabilize
-}
-
-PlayState read_state(void) {
+    sleep(10);                         // stablise ADC
+    sleep_ms(sleep_duration);          // Wait for ADC to stabilize
     // Return current level as on/off/out_of_bounds
     // == 1 / 0 / -1
+
     int raw = adc_read();
     // convert to % of 100
 
-    if (raw > 3500) {
+    if (raw > (RAW_ADC_BOUNDS)OVER) {
         // if over 50% == out_of_bounds
         return OUT_OF_BOUNDS;
-    } else if (raw > 2000) {
+    } else if (raw > (RAW_ADC_BOUNDS)GOOD) {
         // if over 25% == ON
         return ON;
     } else {

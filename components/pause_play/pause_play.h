@@ -11,22 +11,27 @@
  *
  *******************************************************************/
 
-#ifndef PAUSE_PLAY_H
-#define PAUSE_PLAY_H
+#pragma once
 
-typedef enum playState_t {
+typedef enum play_state {
     OUT_OF_BOUNDS = -1,
     OFF = 0,
     ON = 1,
-} PlayState;
+} play_state_t;
+
+typedef enum RAW_ADC_BOUNDS {
+    OVER = 3500,
+    GOOD = 2000,
+} RAW_ADC_BOUNDS;
 
 #define PAUSE_PLAY_GPIO 27
 #define PAUSE_PLAY_ADC 1
 
 void init_pause_play(void);
 
-void configure_pause_play_control(void);
-
-PlayState read_state(void);
-
-#endif /* PAUSE_PLAY_H */
+/**
+ * @brief Read the raw ADC value of the play_state potentiometer and returns an enum with the state.
+ *
+ * @return play_state_t: result of current adc position
+ */
+play_state_t read_state(void);
